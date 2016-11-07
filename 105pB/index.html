@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>猜數字</title>
+    <link href="/assets/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+.wow {
+  width: 100px;
+}
+
+body {
+  background: url('/assets/doge.jpg');
+  background-size: cover;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="hidden">
+      <div class="alert alert-warning" role="alert">
+        <strong>幫QQ！</strong><p class="message"></p>
+      </div>
+      <div class="alert alert-success" role="alert">
+        <strong>猜對了！恭喜！</strong><p class="message"></p>
+      </div>
+    </div>
+    <div class="container">
+      <h1 class="text-center">網路猜數字遊戲</h1>
+      <div class="row collapse" id="login_block">
+        <div class="col-xs-6 col-xs-offset-3">
+          <form id="login">
+            <hr>
+            <div id="messages"></div>
+            <h3 class="text-center"><label for="name">請輸入介於 1~100 的數字</label></h3>
+            <input type="text" id="name" name="name" class="center-block form-control wow" onkeyup="this.value = this.value.replace(/[^\d]+/, '')" onkeydown="this.value = this.value.replace(/[^\d]+/, '')"/>
+            <hr>
+            <button id="wasay" class="btn btn-lg btn-success center-block" type="submit">輸入</button>
+          </form>
+        </div>
+      </div>
+      <button class="btn-lg center-block btn btn-primary" id="start">開始遊戲</button>
+    </div>
+
+    <script src="/assets/jquery.js"></script>
+    <script src="/assets/bootstrap.js"></script>
+    <script>
+status = 0;
+
+$(document).ready(function() {
+  $('#name')[0].disabled = false;
+  $('#wasay')[0].disabled = false;
+});
+
+$('#start').on('click', function() {
+  status = 1;
+  $('#start').addClass('hidden');
+  $('#login_block').collapse('show');
+})
+
+$('#login').on('submit', function() {
+  var money = parseInt($('#name').val());
+  if (money > 100 || money < 1) {
+    alert("請輸入在範圍內的數字！")
+    return false
+  }
+  if (status == 1 && money) {
+    $.get(`/get/${money}`, {}, function(data) {
+    data = $.parseJSON(data);
+    if (data['success']) {
+      $('#messages').children().remove();
+      $('#messages').append($('.hidden').find('.alert-success').clone());
+      $('#message .alert:last-child').find('.message').html(data['message']);
+      status = 2;
+      $('#name')[0].disabled = true;
+      $('#wasay')[0].disabled = true;
+    } else {
+      $('#messages').append($('.hidden').find('.alert-warning').clone());
+      $('#messages .alert:last-child').find('.message').html(data['message']);
+      if (parseInt(data['count']) == 3) {
+        alert("已答錯三次！");
+        status = 2;
+        $('#name')[0].disabled = true;
+        $('#wasay')[0].disabled = true;
+      }
+    };
+  });
+  } else if (status == 1 && !money) {
+    alert("請輸入要猜的數字！")
+  }
+
+  return false;
+});
+</script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>金融科技 - 線上金融信用貸款風險評估</title>
+    <link href="/assets/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+body {
+  background: url('/assets/doge.jpg');
+  background-size: cover;
+}
+
+.rainbow {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #f22), color-stop(0, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2), color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22));
+  background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22));
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.strong {
+  font-weight: bold;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="text-center">分析資料：<span class="strong rainbow">金融科技(FinTech)</span></h1>
+      <p class="h4 text-center"><span class="strong rainbow">FinTech</span> 正夯！你準備進入大破產時代了嗎？ <span class="strong rainbow">#區塊練</span> <span class="strong rainbow">#大數據</span> <span class="strong rainbow">#物連網</span></p>
+      <div class="row">
+        <form id="wow" action="/analytics" method="post">
+          <div class="row" id="login_block">
+            <div class="col-xs-6 col-xs-offset-3">
+              <label for="url"><h3>模擬貸款資料 URI：</h3></label>
+              <input type="text" class="form-control" name="url" id="url"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3 col-xs-offset-3">
+              <label for="threshold"><h4>貸款風險值門檻：</h4></label>
+              <input type="text" id="threshold" name="threshold" class="center-block form-control wow" onkeyup="this.value = this.value.replace(/[^\d]+/, '')" onkeydown="this.value = this.value.replace(/[^\d]+/, '')"/>
+            </div>
+            <div class="col-xs-3">
+              <label for="count"><h4>要顯示幾筆資料？</h4></label>
+              <input type="text" id="count" name="count" class="center-block form-control wow" onkeyup="this.value = this.value.replace(/[^\d]+/, '')" onkeydown="this.value = this.value.replace(/[^\d]+/, '')"/>
+            </div>
+          </div>
+          <div class="row" id="buttons" style="padding-top: 20px;">
+            <p class="text-center">
+            <button class="btn btn-lg btn-success" id="submit" type="submit">送出</button>
+            &nbsp;
+            <button class="btn btn-lg btn-danger" id="reset" form="">清除</button>
+            </p>
+          </div>
+        </form>
+      </div>
+      <a class="btn btn-warning btn-block" href="/" id="ret">返回</a>
+    </div>
+
+    <script src="/assets/jquery.js"></script>
+    <script src="/assets/bootstrap.js"></script>
+    <script src="/assets/app.js"></script>
+    <script type="text/javascript">
+$('#reset').on('click', function() {
+  $('#url').val('');
+  $('#threshold').val('');
+  $('#count').val('');
+})
+    </script>
+  </body>
+</html>

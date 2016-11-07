@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>線上詢問系統</title>
+    <link href="/assets/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+body {
+  background: url('/assets/doge.jpg');
+  background-size: cover;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="text-center">線上詢問系統</h1>
+      <div class="row text-center">
+        <p class="lead" id="message">嗨 <strong>{{name}}</strong>，歡迎來到本系統！</p>
+      </div>
+      <div class="row" id="login_block">
+        <blockquote>{{ myinput }}</blockquote>
+      </div>
+      <a class="btn btn-warning btn-block" href="/" id="ret">返回</a>
+    </div>
+
+    <script src="/assets/jquery.js"></script>
+    <script src="/assets/bootstrap.js"></script>
+    <script></script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>新增 - 雲端遺失物協尋服務</title>
+    <link href="/assets/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+body {
+  background: url('/assets/doge.jpg');
+  background-size: cover;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="text-center">新增遺失物</h1>
+      <form id="login">
+        <div class="row" id="login_block">
+          <div class="col-xs-3 col-xs-offset-3">
+            <label for="name"><h3>物品名稱：</h3></label>
+            <input type="text" class="form-control" name="name" id="name"/>
+          </div>
+          <div class="col-xs-3">
+            <label for="location"><h3>遺失地點：</h3></label>
+            <input type="text" class="form-control" name="location" id="location"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4 col-xs-offset-4">
+            <label for="contact"><h3>聯絡方式</h3></label>
+            <textarea class="form-control" name="contact" id="contact"></textarea>
+          </div>
+        </div>
+        <button class="btn btn-lg btn-success center-block" type="submit" style="margin-top: 20px">新增</button>
+      </form>
+    </div>
+    </div>
+
+    <script src="/assets/jquery.js"></script>
+    <script src="/assets/bootstrap.js"></script>
+    <script>
+$(document).ready(function() {
+});
+
+$('#login').on('submit', function() {
+  $.post('/add', {'name': $('#name').val(), 'contact': $('#contact').val(), 'location': $('#location').val()}, function(data) {
+    alert("成功新增！");
+    window.location = '/';
+  }).fail(function() {
+    alert(text='輸入錯誤！');
+  })
+  return false;
+});
+    </script>
+  </body>
+</html>
